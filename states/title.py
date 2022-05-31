@@ -1,4 +1,5 @@
 from states.baseState import state
+from states.gameWorld import gameWorld
 from pygame.locals import *
 import pygame
 
@@ -9,10 +10,9 @@ class title(state):
 
     def update(self, delta_time, actions):
         pass
-        # if actions["action1"]:
-            # new_state = Game_World(self.game)
-            # new_state.enter_state()
-        # self.game.reset_keys()
+        if actions["start"]:
+            newState = gameWorld(self.game)
+            newState.enterState()
 
     def render(self, display):
         display.fill((255,255,255))

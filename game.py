@@ -18,7 +18,7 @@ class game:
         self.height = 540
         self.width = 720
         self.gameCanvas = pygame.Surface((self.gWidth,self.gHeight))
-        self.actions = {"up": False, "down": False, "left": False, "right": False, "action1": False, "action2": False}
+        self.actions = {"up": False, "down": False, "left": False, "right": False, "action1": False, "action2": False, "start": False}
         self.loadStates()
  
     def init(self):
@@ -52,6 +52,8 @@ class game:
                 self.actions["left"] = True
             if event.key == pygame.K_d:
                 self.actions["right"] = True
+            if event.key == pygame.K_RETURN:
+                self.actions["start"] = True
             if event.key == pygame.K_f:
                 if self.screen.get_flags() & pygame.FULLSCREEN:
                     self.screen = pygame.display.set_mode(self.size, pygame.RESIZABLE)
@@ -73,8 +75,8 @@ class game:
                 self.actions["left"] = False
             if event.key == pygame.K_d:
                 self.actions["right"] = False
-            if event.key == pygame.K_f:
-                self.actions["fullscreen"] = False
+            if event.key == pygame.K_RETURN:
+                self.actions["start"] = False
         # Checks mouse buttons
         if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             self.actions["action1"] = False
@@ -94,9 +96,8 @@ class game:
     def render(self):
         self.stateStack[-1].render(self.gameCanvas)
         # Render current state to the screen
-
+        self.screen.fill((0, 0, 0))
         self.screen.blit(pygame.transform.scale(self.gameCanvas,(self.nWidth, self.nHeight)), ((self.width/2)-(self.nWidth/2), 0))
-#        self.screen.fill((0, 0, 0))
         pygame.display.update()
 
     def cleanup(self):

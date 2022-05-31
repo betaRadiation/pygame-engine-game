@@ -1,4 +1,3 @@
-
 class state():
     def __init__(self, game):
         self.game = game
@@ -9,10 +8,10 @@ class state():
     def render(self, surface):
         pass
 
-    def enter_state(self):
-        if len(self.game.state_stack) > 1:
+    def enterState(self):
+        if len(self.game.stateStack) > 1:
             self.prev_state = self.game.state_stack[-1]
-        self.game.state_stack.append(self)
+        self.game.stateStack.append(self)
 
     def exit_state(self):
         self.game.state_stack.pop()
