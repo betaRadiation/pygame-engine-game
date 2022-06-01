@@ -1,19 +1,24 @@
 import pygame
 import time
+import os
 from states.title import title
 from pygame.locals import *
 
 class game:
     def __init__(self):
+        pygame.font.init()
         self._running = True
         self.fullscreen = False
         self.stateStack = []
         self.screen = None
         self.dt, self.prev_time = 0, 0
+        self.assetPath = os.path.join("assets")
+        self.fontPath = os.path.join(self.assetPath, "font")
         pygame.display.set_caption('Funky game')
         self.size = self.gWidth, self.gHeight = 720, 540
         self.size = self.sWidth, self.sHeight = 720, 540
         self.nWidth = self.sHeight*(4/3)
+        self.font = pygame.font.Font(os.path.join(self.fontPath, "PressStart2P.ttf"), 20)
         self.nHeight = self.sHeight
         self.height = 540
         self.width = 720
@@ -102,6 +107,13 @@ class game:
 
     def cleanup(self):
         pygame.quit()
+
+    def drawText(self, surface, text, color, x, y):
+        textSurface = self.font.render(text, True, color)
+        #textSurface.setColorkey((0,0,0))
+        textRect = textSurface.get_rect()
+        textRect.center = (x, y)
+        surface.blit(textSurface, textRect)
 
     def execute(self):
         if self.init() == False:

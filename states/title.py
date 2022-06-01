@@ -6,7 +6,6 @@ import pygame
 class title(state):
     def __init__(self, game):
         state.__init__(self, game)
-        
 
     def update(self, delta_time, actions):
         pass
@@ -16,5 +15,5 @@ class title(state):
 
     def render(self, display):
         display.fill((255,255,255))
-        pygame.draw.rect(display, (20, 0, 0), (10,20,100,100))
-        pygame.draw.rect(display, (60, 30, 0), (500,20,60,100))
+        self.game.drawText(self.game.gameCanvas, "Welcome to video my game.", (0,0,0), 260, 30)
+        self.game.drawText(self.game.gameCanvas, "press enter to play.", (0,0,0), 260, 200)
