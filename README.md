@@ -1,4 +1,4 @@
 # pygame-engine-game
 a game
 
-this is private and mine and cool 🕶️
+this is public and mine and cool 🕶️
